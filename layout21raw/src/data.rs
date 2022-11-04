@@ -136,7 +136,7 @@ pub struct Instance {
 ///
 /// Keep track of active layers, and index them by name and number.
 ///
-#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+#[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct Layers {
     pub slots: SlotMap<LayerKey, Layer>,
     pub nums: HashMap<i16, LayerKey>,
@@ -344,6 +344,7 @@ impl Layer {
 /// Raw Abstract-Layout
 /// Contains geometric [Element]s generally representing pins and blockages
 /// Does not contain instances, arrays, or layout-implementation details
+
 #[derive(Debug, Default, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct Abstract {
     /// Cell Name
@@ -449,7 +450,7 @@ impl<'lib> DepOrder<'lib> {
 }
 
 /// Collection of the Views describing a Cell
-#[derive(Debug, Default, Clone)]
+#[derive(Debug, Default, Clone, PartialEq)]
 pub struct Cell {
     // Cell Name
     pub name: String,
@@ -492,7 +493,7 @@ impl From<Layout> for Cell {
 /// The geometric-level layout-definition of a [Cell].
 /// Comprised of geometric [Element]s and instances of other [Cell] [Layout]s.
 ///
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, PartialEq)]
 pub struct Layout {
     /// Cell Name
     pub name: String,
@@ -588,6 +589,7 @@ pub struct Element {
 /// Location, orientation, and angular rotation for an [Instance]
 /// Note these fields exist "flat" in [Instance] as well,
 /// and are grouped here for convenience.
+
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct InstancePlace {
     /// Location of `cell` origin
