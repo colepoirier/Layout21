@@ -15,7 +15,9 @@ use serde::{Deserialize, Serialize};
 use crate::{bbox::BoundBoxTrait, Int};
 
 /// # Point in two-dimensional layout-space
-#[derive(Debug, Copy, Clone, Default, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(
+    Debug, Copy, Clone, Default, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash,
+)]
 pub struct Point {
     pub x: Int,
     pub y: Int,
@@ -95,7 +97,7 @@ impl std::ops::Not for Dir {
 /// Open-ended geometric path with non-zero width.
 /// Primarily consists of a series of ordered [Point]s.
 ///
-#[derive(Debug, Default, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[derive(Debug, Default, Clone, Serialize, Deserialize, PartialEq, Eq, Hash)]
 pub struct Path {
     pub points: Vec<Point>,
     pub width: usize,
@@ -108,7 +110,7 @@ pub struct Path {
 /// Closure from the last point back to the first is implied;
 /// the initial point need not be repeated at the end.
 ///
-#[derive(Debug, Default, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[derive(Debug, Default, Clone, Serialize, Deserialize, PartialEq, Eq, Hash)]
 pub struct Polygon {
     pub points: Vec<Point>,
 }
@@ -116,7 +118,7 @@ pub struct Polygon {
 ///
 /// Axis-aligned rectangle, specified by two opposite corners.
 ///
-#[derive(Debug, Default, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[derive(Debug, Default, Clone, Serialize, Deserialize, PartialEq, Eq, Hash)]
 pub struct Rect {
     pub p0: Point,
     pub p1: Point,
@@ -133,7 +135,7 @@ impl Rect {
 /// The primary geometric primitive comprising raw layout.
 /// Variants include [Rect], [Polygon], and [Path].
 ///
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Hash)]
 #[enum_dispatch(ShapeTrait)]
 pub enum Shape {
     Rect(Rect),

@@ -573,7 +573,7 @@ pub struct TextElement {
 /// Combines a geometric [Shape] with a z-axis [Layer],
 /// and optional net connectivity annotation.
 ///
-#[derive(Debug, Default, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[derive(Debug, Default, Clone, Serialize, Deserialize, PartialEq, Eq, Hash)]
 pub struct Element {
     /// Net Name
     pub net: Option<String>,
