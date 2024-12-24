@@ -118,7 +118,9 @@ pub struct Polygon {
 ///
 /// Axis-aligned rectangle, specified by two opposite corners.
 ///
-#[derive(Debug, Default, Clone, Serialize, Deserialize, PartialEq, Eq, Hash)]
+#[derive(
+    Debug, Copy, Clone, Default, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash,
+)]
 pub struct Rect {
     pub p0: Point,
     pub p1: Point,
